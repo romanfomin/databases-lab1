@@ -6,26 +6,40 @@ public class Person {
 
     @Id
     private String id;
-    private String name;
-    private int age;
+    private String firstName;
+    private String lastName;
+    private boolean privileges;
 
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public String getId() {
         return id;
     }
-    public String getName() {
-        return name;
-    }
-    public int getAge() {
-        return age;
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    @Override
-    public String toString() {
-        return "Person [id=" + id + ", name=" + name + ", age=" + age + "]";
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public boolean isPrivileges() {
+        return privileges;
+    }
+
+    public void setPrivileges(boolean privileges) {
+        this.privileges = privileges;
     }
 }

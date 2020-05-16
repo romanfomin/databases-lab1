@@ -1,15 +1,13 @@
 package lab1.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="seq",sequenceName="oracle_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     private Long id;
     private String name;
     private int age;

@@ -51,8 +51,25 @@ docker exec -it CONTAINER_ID mysql -u root -p
 ##### Oracle #######################################
 
 # Run container with oracle
-docker login container-registry.oracle.com
-docker run --name oracle -e ORACLE_PWD=password container-registry.oracle.com/database/standard:latest
+# download 18.3 zip from https://www.oracle.com/database/technologies/oracle-database-software-downloads.html
+git clone https://github.com/oracle/docker-images
+cd docker-images/OracleDatabase/SingleInstance/dockerfiles/18.3.0
+mv ~/Downloads/LINUX.X64_180000_db_home.zip .
+# Fix a small bug in Dockerfile, see https://github.com/oracle/docker-images/issues/1468
+sed -i 's/V981623-01/LINUX.X64_180000_db_home/g' Dockerfile
+docker build -t oracle/database:18.3.0 --build-arg DB_EDITION=EE .
+docker run -d -it --rm --name oracle18 oracle/database:18.3.0
+
+docker run -p 11521:1521 --name oracle -e ORACLE_PWD=password oracle/database:18.3.0
+docker exec -it CONTAINER_ID bash
+export ORACLE_SID=ORCLCDB
+sqlplus sys as sysdba
+# password
+
+# JDBC driver for Oracle
+#Download jar from https://www.oracle.com/database/technologies/appdev/jdbc-ucp-183-downloads.html
+#From project directory run
+mvn install:install-file -Dfile=/home/fomin/Downloads/ojdbc8.jar -DgroupId=com.oracle -DartifactId=ojdbc8 -Dversion=12.1.0 -Dpackaging=jar
 
 
 

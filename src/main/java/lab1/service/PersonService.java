@@ -18,6 +18,11 @@ public class PersonService {
     }
 
     @Transactional
+    public  void removeAll() {
+        personCrudRepository.deleteAll();
+    }
+
+    @Transactional
     public Iterable<Person> getPersons() {
         return personCrudRepository.findAll();
     }

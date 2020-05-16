@@ -12,6 +12,9 @@ public class DBManager {
     private PersonService personService;
 
     public void doDbOperations() {
+//        personService.removeAll();
+
+
         Person p = new Person("name1", 44);
         personService.addPerson(p);
 

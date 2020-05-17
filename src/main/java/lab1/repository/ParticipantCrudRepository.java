@@ -1,9 +1,9 @@
 package lab1.repository;
 
-import lab1.model.Subject;
+import lab1.model.Participant;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SubjectCrudRepository extends CrudRepository<Subject, Long> {
+public interface ParticipantCrudRepository extends CrudRepository<Participant, Long> {
 }

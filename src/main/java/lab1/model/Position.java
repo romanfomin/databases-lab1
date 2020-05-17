@@ -3,18 +3,18 @@ package lab1.model;
 import javax.persistence.*;
 
 @Entity
-public class StudyForm {
+public class Position {
 
     @Id
-    @SequenceGenerator(name = "study_form_seq", sequenceName = "study_form_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "study_form_seq")
+    @SequenceGenerator(name = "position_seq", sequenceName = "position_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "position_seq")
     private Long id;
     private String name;
 
-    public StudyForm() {
+    public Position() {
     }
 
-    public StudyForm(String name) {
+    public Position(String name) {
         this.name = name;
     }
 

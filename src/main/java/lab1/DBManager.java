@@ -6,39 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class DBManager {
 
     @Autowired
-    ControlTypeCrudRepository controlTypeCrudRepository;
+    ConferenceCrudRepository conferenceCrudRepository;
 
     @Autowired
-    FacultyCrudRepository facultyCrudRepository;
+    EditionCrudRepository editionCrudRepository;
 
     @Autowired
-    ProfessorCrudRepository professorCrudRepository;
+    EditionTypeCrudRepository editionTypeCrudRepository;
 
     @Autowired
-    ScoresCrudRepository scoresCrudRepository;
+    LanguageCrudRepository languageCrudRepository;
 
     @Autowired
-    SpecialityCrudRepository specialityCrudRepository;
+    LibraryInfoCrudRepository libraryInfoCrudRepository;
 
     @Autowired
-    StudentCrudRepository studentCrudRepository;
+    ParticipantCrudRepository participantCrudRepository;
 
     @Autowired
-    StudyFormCrudRepository studyFormCrudRepository;
+    PositionCrudRepository positionCrudRepository;
 
     @Autowired
-    SubjectCrudRepository subjectCrudRepository;
-
-    @Autowired
-    UniversityCrudRepository universityCrudRepository;
+    PublicationCrudRepository publicationCrudRepository;
 
     public void doDbOperations() {
         saveData();
@@ -47,49 +42,56 @@ public class DBManager {
 
     @Transactional
     public void saveData() {
-        University university = new University("itmo");
-        Professor professor = new Professor("name1", "lastName1");
+        Position position = new Position("bachelor");
+        Language language = new Language("Russian");
 
-        ControlType exam = new ControlType("exam");
-        StudyForm studyForm = new StudyForm("form1");
+        Participant participant1 = new Participant("name1", "lastname1", position);
+        Participant participant2 = new Participant("name2", "lastname2", position);
+        List<Participant> participants = new ArrayList<>();
+        participants.add(participant1);
+        participants.add(participant2);
 
-        Subject subject1 = new Subject(10,22,12, exam, professor);
-        Subject subject2 = new Subject(12,2,5, exam, professor);
-        List<Subject> subjects = new ArrayList<>();
-        subjects.add(subject1);
-        subjects.add(subject2);
+        Conference conference = new Conference("conf1", "addr1", new Date(), participants);
 
-        Faculty faculty1 = new Faculty("ПИиКТ", university);
+        EditionType editionType = new EditionType("type1");
 
-        Speciality speciality = new Speciality("speciality1", studyForm, subjects, faculty1);
+        Publication publication1 = new Publication("pub1", participants, new Date());
+        Publication publication2 = new Publication("pub2", Collections.singletonList(participant1), new Date());
 
-        Student student = new Student("name1", "lastname1", speciality, 5);
+        Edition edition1 = new Edition("ed1", editionType, language,
+                Arrays.asList(publication1, publication2));
+        Edition edition2 = new Edition("ed2", editionType, language,
+                Collections.singletonList(publication1));
 
-        Scores scores1 = new Scores(subject1, student, 45, new Date());
-        Scores scores2 = new Scores(subject2, student, 100, new Date());
+        LibraryInfo libraryInfo1 = new LibraryInfo(edition1, participant1, new Date(), new Date());
+        LibraryInfo libraryInfo2 = new LibraryInfo(edition2, participant1, new Date(), new Date());
 
-        universityCrudRepository.save(university);
-        professorCrudRepository.save(professor);
+        positionCrudRepository.save(position);
+        languageCrudRepository.save(language);
 
-        controlTypeCrudRepository.save(exam);
-        studyFormCrudRepository.save(studyForm);
+        participantCrudRepository.save(participant1);
+        participantCrudRepository.save(participant2);
 
-        subjectCrudRepository.save(subject1);
-        subjectCrudRepository.save(subject2);
+        conferenceCrudRepository.save(conference);
 
-        facultyCrudRepository.save(faculty1);
-        specialityCrudRepository.save(speciality);
+        editionTypeCrudRepository.save(editionType);
 
-        studentCrudRepository.save(student);
+        publicationCrudRepository.save(publication1);
+        publicationCrudRepository.save(publication2);
 
-        scoresCrudRepository.save(scores1);
-        scoresCrudRepository.save(scores2);
+        editionCrudRepository.save(edition1);
+        editionCrudRepository.save(edition2);
+
+        libraryInfoCrudRepository.save(libraryInfo1);
+        libraryInfoCrudRepository.save(libraryInfo2);
     }
 
     @Transactional
     public void getData() {
-        Iterable<University> universities = universityCrudRepository.findAll();
-        Iterable<Scores> scores = scoresCrudRepository.findAll();
-        Iterable<Student> students = studentCrudRepository.findAll();
+        Iterable<Participant> participants = participantCrudRepository.findAll();
+        Iterable<Conference> conferences = conferenceCrudRepository.findAll();
+        Iterable<Edition> editions = editionCrudRepository.findAll();
+
+        System.out.println("end");
     }
 }

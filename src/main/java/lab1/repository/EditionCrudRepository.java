@@ -1,9 +1,9 @@
 package lab1.repository;
 
-import lab1.model.Faculty;
+import lab1.model.Edition;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FacultyCrudRepository extends CrudRepository<Faculty, Long> {
+public interface EditionCrudRepository extends CrudRepository<Edition, Long> {
 }

@@ -3,18 +3,18 @@ package lab1.model;
 import javax.persistence.*;
 
 @Entity
-public class ControlType {
+public class Language {
 
     @Id
-    @SequenceGenerator(name = "control_type_seq", sequenceName = "control_type_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "control_type_seq")
+    @SequenceGenerator(name = "language_seq", sequenceName = "language_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "language_seq")
     private Long id;
     private String name;
 
-    public ControlType() {
+    public Language() {
     }
 
-    public ControlType(String name) {
+    public Language(String name) {
         this.name = name;
     }
 
@@ -29,5 +29,4 @@ public class ControlType {
     public void setName(String name) {
         this.name = name;
     }
-
 }

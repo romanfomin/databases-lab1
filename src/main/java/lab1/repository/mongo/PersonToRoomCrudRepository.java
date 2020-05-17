@@ -1,6 +1,6 @@
-package lab1.repository;
+package lab1.repository.mongo;
 
-import lab1.model.PersonToRoom;
+import lab1.model.mongo.PersonToRoom;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

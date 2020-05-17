@@ -1,14 +1,10 @@
 package lab1;
 
-import lab1.model.*;
-import lab1.repository.*;
+import lab1.model.awm.*;
+import lab1.repository.awm.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Component
 public class DBManager {

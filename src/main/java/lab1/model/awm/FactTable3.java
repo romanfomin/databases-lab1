@@ -1,4 +1,4 @@
-package lab1.model;
+package lab1.model.awm;
 
 import javax.persistence.*;
 

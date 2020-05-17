@@ -1,23 +1,23 @@
-package lab1.model;
+package lab1.model.awm;
 
 import javax.persistence.*;
 
 @Entity
-public class BirthPlace {
+public class Publisher {
 
     @Id
-    @SequenceGenerator(name = "birth_place_seq", sequenceName = "birth_place_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "birth_place_seq")
+    @SequenceGenerator(name = "publisher_seq", sequenceName = "publisher_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "publisher_seq")
     private Long id;
-    private String district;
+    private String edition;
     private String city;
     private String country;
 
-    public BirthPlace() {
+    public Publisher() {
     }
 
-    public BirthPlace(String district, String city, String country) {
-        this.district = district;
+    public Publisher(String edition, String city, String country) {
+        this.edition = edition;
         this.city = city;
         this.country = country;
     }
@@ -30,12 +30,12 @@ public class BirthPlace {
         this.id = id;
     }
 
-    public String getDistrict() {
-        return district;
+    public String getEdition() {
+        return edition;
     }
 
-    public void setDistrict(String district) {
-        this.district = district;
+    public void setEdition(String edition) {
+        this.edition = edition;
     }
 
     public String getCity() {

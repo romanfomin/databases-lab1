@@ -1,6 +1,6 @@
-package lab1.repository;
+package lab1.repository.awm;
 
-import lab1.model.Campus;
+import lab1.model.awm.Campus;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

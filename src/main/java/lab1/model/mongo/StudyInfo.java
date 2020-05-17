@@ -1,14 +1,24 @@
-package lab1.model;
+package lab1.model.mongo;
 
 import org.springframework.data.annotation.Id;
 
+import javax.persistence.*;
+
+@Entity
 public class StudyInfo {
 
     @Id
-    private String id;
+    @SequenceGenerator(name = "study_info_seq", sequenceName = "study_info_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "study_info_seq")
+    private Long id;
     private String type;
     private Integer paid;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "person_id", nullable = false)
     private Person person;
+
+    public StudyInfo() {
+    }
 
     public StudyInfo(String type, Integer paid, Person person) {
         this.type = type;
@@ -16,8 +26,12 @@ public class StudyInfo {
         this.person = person;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getType() {

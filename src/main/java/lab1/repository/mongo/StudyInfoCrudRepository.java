@@ -1,6 +1,6 @@
-package lab1.repository;
+package lab1.repository.mongo;
 
-import lab1.model.StudyInfo;
+import lab1.model.mongo.StudyInfo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

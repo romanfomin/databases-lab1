@@ -1,22 +1,33 @@
-package lab1.model;
+package lab1.model.mongo;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.*;
 
+@Entity
 public class Person {
 
     @Id
-    private String id;
+    @SequenceGenerator(name = "person_seq", sequenceName = "person_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
+    private Long id;
     private String firstName;
     private String lastName;
     private boolean privileges;
 
-    public Person(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Person() {
     }
 
-    public String getId() {
+    public Person(String firstName, String lastName, boolean privileges) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.privileges = privileges;
+    }
+
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {

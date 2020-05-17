@@ -1,6 +1,6 @@
-package lab1.repository;
+package lab1.repository.awm;
 
-import lab1.model.Publisher;
+import lab1.model.awm.Publisher;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

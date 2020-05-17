@@ -1,37 +1,39 @@
 package lab1;
 
-import lab1.model.awm.*;
-import lab1.repository.awm.*;
+import lab1.model.mysql.*;
+import lab1.repository.mysql.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.*;
 
 @Component
 public class DBManager {
 
     @Autowired
-    BirthPlaceCrudRepository birthPlaceCrudRepository;
+    ConferenceCrudRepository conferenceCrudRepository;
 
     @Autowired
-    CampusCrudRepository campusCrudRepository;
+    EditionCrudRepository editionCrudRepository;
 
     @Autowired
-    PublisherCrudRepository publisherCrudRepository;
+    EditionTypeCrudRepository editionTypeCrudRepository;
 
     @Autowired
-    TimeCrudRepository timeCrudRepository;
+    LanguageCrudRepository languageCrudRepository;
 
     @Autowired
-    FactTable1CrudRepository factTable1CrudRepository;
+    LibraryInfoCrudRepository libraryInfoCrudRepository;
 
     @Autowired
-    FactTable2CrudRepository factTable2CrudRepository;
+    ParticipantCrudRepository participantCrudRepository;
 
     @Autowired
-    FactTable3CrudRepository factTable3CrudRepository;
+    PositionCrudRepository positionCrudRepository;
 
     @Autowired
-    FactTable4CrudRepository factTable4CrudRepository;
+    PublicationCrudRepository publicationCrudRepository;
 
     public void doDbOperations() {
         saveData();
@@ -40,62 +42,55 @@ public class DBManager {
 
     @Transactional
     public void saveData() {
-        Campus campus1 = new Campus("address1");
-        Campus campus2 = new Campus("address2");
+        Position position = new Position("bachelor");
+        Language language = new Language("Russian");
 
-        Time time1 = new Time(1, 2020);
-        Time time2 = new Time(2, 2020);
+        Participant participant1 = new Participant("name1", "lastname1", position);
+        Participant participant2 = new Participant("name2", "lastname2", position);
+        List<Participant> participants = new ArrayList<>();
+        participants.add(participant1);
+        participants.add(participant2);
 
-        Publisher publisher1 = new Publisher("edition1", "SPB", "Russia");
-        Publisher publisher2 = new Publisher("edition2", "Moscow", "Russia");
+        Conference conference = new Conference("conf1", "addr1", new Date(), participants);
 
-        BirthPlace birthPlace1 = new BirthPlace("distr1", "SPB", "Russia");
-        BirthPlace birthPlace2 = new BirthPlace("distr2", "SPB", "Russia");
+        EditionType editionType = new EditionType("type1");
 
-        FactTable1 factTable1_1 = new FactTable1(2, 3, 10, 5,
-                8, 12, 23, 45, time1);
-        FactTable1 factTable1_2 = new FactTable1(20, 31, 10, 5,
-                6, 15, 5, 54, time2);
+        Publication publication1 = new Publication("pub1", participants, new Date());
+        Publication publication2 = new Publication("pub2", Collections.singletonList(participant1), new Date());
 
-        FactTable2 factTable2_1 = new FactTable2(20, birthPlace1, time1);
-        FactTable2 factTable2_2 = new FactTable2(13, birthPlace2, time1);
+        Edition edition1 = new Edition("ed1", editionType, language,
+                Arrays.asList(publication1, publication2));
+        Edition edition2 = new Edition("ed2", editionType, language,
+                Collections.singletonList(publication1));
 
-        FactTable3 factTable3_1 = new FactTable3(21, publisher1, time1);
-        FactTable3 factTable3_2 = new FactTable3(13, publisher2, time2);
+        LibraryInfo libraryInfo1 = new LibraryInfo(edition1, participant1, new Date(), new Date());
+        LibraryInfo libraryInfo2 = new LibraryInfo(edition2, participant1, new Date(), new Date());
 
-        FactTable4 factTable4_1 = new FactTable4(2.3, 13, 23, 12, 3, campus1, time1);
-        FactTable4 factTable4_2 = new FactTable4(2.5, 34, 12, 32, 21, campus2, time2);
+        positionCrudRepository.save(position);
+        languageCrudRepository.save(language);
 
-        campusCrudRepository.save(campus1);
-        campusCrudRepository.save(campus2);
+        participantCrudRepository.save(participant1);
+        participantCrudRepository.save(participant2);
 
-        timeCrudRepository.save(time1);
-        timeCrudRepository.save(time2);
+        conferenceCrudRepository.save(conference);
 
-        publisherCrudRepository.save(publisher1);
-        publisherCrudRepository.save(publisher2);
+        editionTypeCrudRepository.save(editionType);
 
-        birthPlaceCrudRepository.save(birthPlace1);
-        birthPlaceCrudRepository.save(birthPlace2);
+        publicationCrudRepository.save(publication1);
+        publicationCrudRepository.save(publication2);
 
-        factTable1CrudRepository.save(factTable1_1);
-        factTable1CrudRepository.save(factTable1_2);
+        editionCrudRepository.save(edition1);
+        editionCrudRepository.save(edition2);
 
-        factTable2CrudRepository.save(factTable2_1);
-        factTable2CrudRepository.save(factTable2_2);
-
-        factTable3CrudRepository.save(factTable3_1);
-        factTable3CrudRepository.save(factTable3_2);
-
-        factTable4CrudRepository.save(factTable4_1);
-        factTable4CrudRepository.save(factTable4_2);
+        libraryInfoCrudRepository.save(libraryInfo1);
+        libraryInfoCrudRepository.save(libraryInfo2);
     }
 
     @Transactional
     public void getData() {
-        Iterable<FactTable1> factTable1s = factTable1CrudRepository.findAll();
-        Iterable<FactTable2> factTable2s = factTable2CrudRepository.findAll();
+        Iterable<Participant> participants = participantCrudRepository.findAll();
+        Iterable<Conference> conferences = conferenceCrudRepository.findAll();
+        Iterable<Edition> editions = editionCrudRepository.findAll();
 
-        System.out.println("end");
     }
 }

@@ -1,15 +1,13 @@
 package lab1.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class ControlType {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "control_type_seq", sequenceName = "control_type_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "control_type_seq")
     private Long id;
     private String name;
 
@@ -31,4 +29,5 @@ public class ControlType {
     public void setName(String name) {
         this.name = name;
     }
+
 }

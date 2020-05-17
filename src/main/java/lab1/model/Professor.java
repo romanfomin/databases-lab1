@@ -7,16 +7,20 @@ import java.util.List;
 public class Professor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "professor_seq", sequenceName = "professor_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "professor_seq")
     private Long id;
     private String name;
     private String lastName;
+    @OneToMany(mappedBy = "professor", fetch = FetchType.EAGER)
     private List<Subject> subjects;
 
-    public Professor(String name, String lastName, List<Subject> subjects) {
+    public Professor() {
+    }
+
+    public Professor(String name, String lastName) {
         this.name = name;
         this.lastName = lastName;
-        this.subjects = subjects;
     }
 
     public Long getId() {

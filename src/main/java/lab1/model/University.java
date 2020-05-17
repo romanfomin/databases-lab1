@@ -1,23 +1,24 @@
 package lab1.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class University {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "university_seq", sequenceName = "university_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "university_seq")
     private Long id;
     private String name;
+    @OneToMany(mappedBy = "university", fetch = FetchType.EAGER)
     private List<Faculty> faculties;
 
-    public University(String name, List<Faculty> faculties) {
+    public University() {
+    }
+
+    public University(String name) {
         this.name = name;
-        this.faculties = faculties;
     }
 
     public Long getId() {

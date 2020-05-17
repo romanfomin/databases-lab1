@@ -7,12 +7,20 @@ import java.util.Date;
 public class Scores {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "scores_seq", sequenceName = "scores_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "scores_seq")
     private Long id;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "subject_id", nullable = false)
     private Subject subject;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "student_id", nullable = false)
     private Student student;
     private Integer score;
     private Date date;
+
+    public Scores() {
+    }
 
     public Scores(Subject subject, Student student, Integer score, Date date) {
         this.subject = subject;

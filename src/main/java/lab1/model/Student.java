@@ -6,12 +6,18 @@ import javax.persistence.*;
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "student_seq", sequenceName = "student_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq")
     private Long id;
     private String name;
     private String lastName;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "speciality_id", nullable = false)
     private Speciality speciality;
     private Integer semester;
+
+    public Student() {
+    }
 
     public Student(String name, String lastName, Speciality speciality, Integer semester) {
         this.name = name;

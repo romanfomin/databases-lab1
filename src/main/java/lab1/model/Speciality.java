@@ -7,16 +7,32 @@ import java.util.List;
 public class Speciality {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "speciality_seq", sequenceName = "speciality_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "speciality_seq")
     private Long id;
     private String name;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "study_form_id", nullable = false)
     private StudyForm studyForm;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "subject_to_speciality",
+            joinColumns = @JoinColumn(name = "speciality_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id")
+    )
     private List<Subject> subjects;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "faculty_id", nullable = false)
+    private Faculty faculty;
 
-    public Speciality(String name, StudyForm studyForm, List<Subject> subjects) {
+    public Speciality() {
+    }
+
+    public Speciality(String name, StudyForm studyForm, List<Subject> subjects, Faculty faculty) {
         this.name = name;
         this.studyForm = studyForm;
         this.subjects = subjects;
+        this.faculty = faculty;
     }
 
     public Long getId() {
@@ -45,5 +61,13 @@ public class Speciality {
 
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
     }
 }

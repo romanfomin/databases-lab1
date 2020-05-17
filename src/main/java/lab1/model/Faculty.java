@@ -7,14 +7,22 @@ import java.util.List;
 public class Faculty {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "faculty_seq", sequenceName = "faculty_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "faculty_seq")
     private Long id;
     private String name;
+    @OneToMany(mappedBy = "faculty", fetch = FetchType.EAGER)
     private List<Speciality> specialities;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "university_id", nullable = false)
+    private University university;
 
-    public Faculty(String name, List<Speciality> specialities) {
+    public Faculty() {
+    }
+
+    public Faculty(String name, University university) {
         this.name = name;
-        this.specialities = specialities;
+        this.university = university;
     }
 
     public Long getId() {
@@ -35,5 +43,13 @@ public class Faculty {
 
     public void setSpecialities(List<Speciality> specialities) {
         this.specialities = specialities;
+    }
+
+    public University getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(University university) {
+        this.university = university;
     }
 }

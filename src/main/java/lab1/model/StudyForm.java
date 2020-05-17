@@ -1,17 +1,18 @@
 package lab1.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class StudyForm {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "study_form_seq", sequenceName = "study_form_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "study_form_seq")
     private Long id;
     private String name;
+
+    public StudyForm() {
+    }
 
     public StudyForm(String name) {
         this.name = name;

@@ -1,0 +1,642 @@
+
+<Metadata
+  Version="2.1"
+  MinimumDatabaseVersion="12.2.0.0">
+  <StandardDimension
+    Name="TIMEDM"
+    ETViewName="TIMEDM_VIEW"
+    ETKeyColumnName="DIM_KEY"
+    ETLevelColumnName="LEVEL_NAME"
+    ETMemberTypeColumnName="MEMBER_TYPE"
+    ETDimensionOrderColumnName="DIM_ORDER"
+    ETHierarchyOrderColumnName="HIER_ORDER"
+    DefaultHierarchy="TIME_PERIOD"
+    ValueDescriptionAttribute="LONG_DESCRIPTION"
+    ShortValueDescriptionAttribute="SHORT_DESCRIPTION">
+    <Hierarchy>
+      <LevelHierarchy
+        IsSkipLevel="True"
+        IsRagged="True"
+        IsSnowflake="False"
+        Name="TIME_PERIOD"
+        ETParentColumnName="PARENT"
+        ETDepthColumnName="DEPTH"
+        ETViewName="TIMEDM_TIME_PERIOD_VIEW">
+        <Description
+          Type="LongDescription"
+          Language="ENGLISH"
+          Value="Time period">
+        </Description>
+        <Description
+          Type="ShortDescription"
+          Language="ENGLISH"
+          Value="Time period">
+        </Description>
+        <Description
+          Type="Description"
+          Language="ENGLISH"
+          Value="Time period">
+        </Description>
+        <HierarchyLevel
+          DimensionLevel="YEAR">
+          <HierarchyLevelMap
+            KeyExpression="&quot;TIME&quot;.YEAR_ID"
+            Query="&quot;TIME&quot;">
+            <AttributeMap
+              Name="LONG_DESCRIPTION"
+              Attribute="LONG_DESCRIPTION"
+              Expression="&quot;TIME&quot;.YEAR_VALUE">
+            </AttributeMap>
+            <AttributeMap
+              Name="YEAR_LONG_DESCRIPTION"
+              Attribute="YEAR_LONG_DESCRIPTION"
+              Expression="&quot;TIME&quot;.YEAR_VALUE">
+            </AttributeMap>
+            <AttributeMap
+              Name="SHORT_DESCRIPTION"
+              Attribute="SHORT_DESCRIPTION"
+              Expression="&quot;TIME&quot;.YEAR_VALUE">
+            </AttributeMap>
+            <AttributeMap
+              Name="YEAR_SHORT_DESCRIPTION"
+              Attribute="YEAR_SHORT_DESCRIPTION"
+              Expression="&quot;TIME&quot;.YEAR_VALUE">
+            </AttributeMap>
+            <AttributeMap
+              Name="VALUE"
+              Attribute="VALUE"
+              Expression="&quot;TIME&quot;.YEAR_VALUE">
+            </AttributeMap>
+            <AttributeMap
+              Name="YEAR_VALUE"
+              Attribute="YEAR_VALUE"
+              Expression="&quot;TIME&quot;.YEAR_VALUE">
+            </AttributeMap>
+          </HierarchyLevelMap>
+        </HierarchyLevel>
+        <HierarchyLevel
+          DimensionLevel="TERM">
+          <HierarchyLevelMap
+            KeyExpression="&quot;TIME&quot;.TERM_ID"
+            Query="&quot;TIME&quot;">
+            <AttributeMap
+              Name="LONG_DESCRIPTION"
+              Attribute="LONG_DESCRIPTION"
+              Expression="&quot;TIME&quot;.TERM_VALUE">
+            </AttributeMap>
+            <AttributeMap
+              Name="TERM_LONG_DESCRIPTION"
+              Attribute="TERM_LONG_DESCRIPTION"
+              Expression="&quot;TIME&quot;.TERM_VALUE">
+            </AttributeMap>
+            <AttributeMap
+              Name="SHORT_DESCRIPTION"
+              Attribute="SHORT_DESCRIPTION"
+              Expression="&quot;TIME&quot;.TERM_VALUE">
+            </AttributeMap>
+            <AttributeMap
+              Name="TERM_SHORT_DESCRIPTION"
+              Attribute="TERM_SHORT_DESCRIPTION"
+              Expression="&quot;TIME&quot;.TERM_VALUE">
+            </AttributeMap>
+            <AttributeMap
+              Name="VALUE"
+              Attribute="VALUE"
+              Expression="&quot;TIME&quot;.TERM_VALUE">
+            </AttributeMap>
+            <AttributeMap
+              Name="TERM_VALUE"
+              Attribute="TERM_VALUE"
+              Expression="&quot;TIME&quot;.TERM_VALUE">
+            </AttributeMap>
+          </HierarchyLevelMap>
+        </HierarchyLevel>
+      </LevelHierarchy>
+    </Hierarchy>
+    <DimensionLevel
+      Name="YEAR"
+      ETKeyColumnName="YEAR">
+      <Description
+        Type="LongDescription"
+        Language="ENGLISH"
+        Value="Year">
+      </Description>
+      <Description
+        Type="ShortDescription"
+        Language="ENGLISH"
+        Value="Year">
+      </Description>
+      <Description
+        Type="Description"
+        Language="ENGLISH"
+        Value="Year">
+      </Description>
+      <VisibleAttribute
+        Name="YEAR_LONG_DESCRIPTION"/>
+      <VisibleAttribute
+        Name="YEAR_SHORT_DESCRIPTION"/>
+      <VisibleAttribute
+        Name="YEAR_VALUE"/>
+    </DimensionLevel>
+    <DimensionLevel
+      Name="TERM"
+      ETKeyColumnName="TERM">
+      <Description
+        Type="LongDescription"
+        Language="ENGLISH"
+        Value="Term">
+      </Description>
+      <Description
+        Type="ShortDescription"
+        Language="ENGLISH"
+        Value="Term">
+      </Description>
+      <Description
+        Type="Description"
+        Language="ENGLISH"
+        Value="Term">
+      </Description>
+      <VisibleAttribute
+        Name="TERM_LONG_DESCRIPTION"/>
+      <VisibleAttribute
+        Name="TERM_SHORT_DESCRIPTION"/>
+      <VisibleAttribute
+        Name="TERM_VALUE"/>
+    </DimensionLevel>
+    <Attribute>
+      <BaseAttribute
+        SQLDataType="NUMBER(10, 0)"
+        AllowAutoDataTypeChange="True"
+        ETAttributeColumnName="LONG_DESCRIPTION"
+        IsMultiLingual="False"
+        PopulateLineage="False"
+        IsLoopMask="False"
+        IsVisibleForAll="True"
+        IsLevelUnique="False"
+        Name="LONG_DESCRIPTION">
+        <Classification
+          Value="STAR"/>
+        <Description
+          Type="ShortDescription"
+          Language="ENGLISH"
+          Value="Long Description">
+        </Description>
+        <Description
+          Type="LongDescription"
+          Language="ENGLISH"
+          Value="Long Description">
+        </Description>
+        <Description
+          Type="Description"
+          Language="ENGLISH"
+          Value="Long Description">
+        </Description>
+      </BaseAttribute>
+    </Attribute>
+    <Attribute>
+      <BaseAttribute
+        SQLDataType="NUMBER(10, 0)"
+        AllowAutoDataTypeChange="True"
+        ETAttributeColumnName="SHORT_DESCRIPTION"
+        IsMultiLingual="False"
+        PopulateLineage="False"
+        IsLoopMask="False"
+        IsVisibleForAll="True"
+        IsLevelUnique="False"
+        Name="SHORT_DESCRIPTION">
+        <Classification
+          Value="STAR"/>
+        <Description
+          Type="ShortDescription"
+          Language="ENGLISH"
+          Value="Short Description">
+        </Description>
+        <Description
+          Type="LongDescription"
+          Language="ENGLISH"
+          Value="Short Description">
+        </Description>
+        <Description
+          Type="Description"
+          Language="ENGLISH"
+          Value="Short Description">
+        </Description>
+      </BaseAttribute>
+    </Attribute>
+    <Attribute>
+      <BaseAttribute
+        SQLDataType="NUMBER(10, 0)"
+        AllowAutoDataTypeChange="True"
+        ETAttributeColumnName="YEAR_LONG_DESCRIPTION"
+        IsMultiLingual="False"
+        PopulateLineage="True"
+        AttributeGroupName="LONG_DESCRIPTION"
+        IsLoopMask="False"
+        IsVisibleForAll="False"
+        IsLevelUnique="False"
+        Name="YEAR_LONG_DESCRIPTION">
+        <Description
+          Type="LongDescription"
+          Language="ENGLISH"
+          Value="Year Long Description">
+        </Description>
+        <Description
+          Type="ShortDescription"
+          Language="ENGLISH"
+          Value="Year Long Description">
+        </Description>
+        <Description
+          Type="Description"
+          Language="ENGLISH"
+          Value="Year Long Description">
+        </Description>
+      </BaseAttribute>
+    </Attribute>
+    <Attribute>
+      <BaseAttribute
+        SQLDataType="NUMBER(10, 0)"
+        AllowAutoDataTypeChange="True"
+        ETAttributeColumnName="YEAR_SHORT_DESCRIPTION"
+        IsMultiLingual="False"
+        PopulateLineage="True"
+        AttributeGroupName="SHORT_DESCRIPTION"
+        IsLoopMask="False"
+        IsVisibleForAll="False"
+        IsLevelUnique="False"
+        Name="YEAR_SHORT_DESCRIPTION">
+        <Description
+          Type="LongDescription"
+          Language="ENGLISH"
+          Value="Year Short Description">
+        </Description>
+        <Description
+          Type="ShortDescription"
+          Language="ENGLISH"
+          Value="Year Short Description">
+        </Description>
+        <Description
+          Type="Description"
+          Language="ENGLISH"
+          Value="Year Short Description">
+        </Description>
+      </BaseAttribute>
+    </Attribute>
+    <Attribute>
+      <BaseAttribute
+        SQLDataType="NUMBER(10, 0)"
+        AllowAutoDataTypeChange="True"
+        ETAttributeColumnName="TERM_LONG_DESCRIPTION"
+        IsMultiLingual="False"
+        PopulateLineage="True"
+        AttributeGroupName="LONG_DESCRIPTION"
+        IsLoopMask="False"
+        IsVisibleForAll="False"
+        IsLevelUnique="False"
+        Name="TERM_LONG_DESCRIPTION">
+        <Description
+          Type="LongDescription"
+          Language="ENGLISH"
+          Value="Term Long Description">
+        </Description>
+        <Description
+          Type="ShortDescription"
+          Language="ENGLISH"
+          Value="Term Long Description">
+        </Description>
+        <Description
+          Type="Description"
+          Language="ENGLISH"
+          Value="Term Long Description">
+        </Description>
+      </BaseAttribute>
+    </Attribute>
+    <Attribute>
+      <BaseAttribute
+        SQLDataType="NUMBER(10, 0)"
+        AllowAutoDataTypeChange="True"
+        ETAttributeColumnName="TERM_SHORT_DESCRIPTION"
+        IsMultiLingual="False"
+        PopulateLineage="True"
+        AttributeGroupName="SHORT_DESCRIPTION"
+        IsLoopMask="False"
+        IsVisibleForAll="False"
+        IsLevelUnique="False"
+        Name="TERM_SHORT_DESCRIPTION">
+        <Description
+          Type="LongDescription"
+          Language="ENGLISH"
+          Value="Term Short Description">
+        </Description>
+        <Description
+          Type="ShortDescription"
+          Language="ENGLISH"
+          Value="Term Short Description">
+        </Description>
+        <Description
+          Type="Description"
+          Language="ENGLISH"
+          Value="Term Short Description">
+        </Description>
+      </BaseAttribute>
+    </Attribute>
+    <Attribute>
+      <BaseAttribute
+        SQLDataType="NUMBER(10, 0)"
+        AllowAutoDataTypeChange="True"
+        ETAttributeColumnName="VALUE"
+        IsMultiLingual="False"
+        PopulateLineage="False"
+        IsLoopMask="False"
+        IsVisibleForAll="True"
+        IsLevelUnique="False"
+        Name="VALUE">
+        <Classification
+          Value="STAR"/>
+        <Description
+          Type="LongDescription"
+          Language="ENGLISH"
+          Value="Value">
+        </Description>
+        <Description
+          Type="ShortDescription"
+          Language="ENGLISH"
+          Value="Value">
+        </Description>
+        <Description
+          Type="Description"
+          Language="ENGLISH"
+          Value="Value">
+        </Description>
+      </BaseAttribute>
+    </Attribute>
+    <Attribute>
+      <BaseAttribute
+        SQLDataType="NUMBER(10, 0)"
+        AllowAutoDataTypeChange="True"
+        ETAttributeColumnName="YEAR_VALUE"
+        IsMultiLingual="False"
+        PopulateLineage="True"
+        AttributeGroupName="VALUE"
+        IsLoopMask="False"
+        IsVisibleForAll="False"
+        IsLevelUnique="False"
+        Name="YEAR_VALUE">
+        <Description
+          Type="LongDescription"
+          Language="ENGLISH"
+          Value="Year ">
+        </Description>
+        <Description
+          Type="ShortDescription"
+          Language="ENGLISH"
+          Value="Year ">
+        </Description>
+        <Description
+          Type="Description"
+          Language="ENGLISH"
+          Value="Year ">
+        </Description>
+      </BaseAttribute>
+    </Attribute>
+    <Attribute>
+      <BaseAttribute
+        SQLDataType="NUMBER(10, 0)"
+        AllowAutoDataTypeChange="True"
+        ETAttributeColumnName="TERM_VALUE"
+        IsMultiLingual="False"
+        PopulateLineage="True"
+        AttributeGroupName="VALUE"
+        IsLoopMask="False"
+        IsVisibleForAll="False"
+        IsLevelUnique="False"
+        Name="TERM_VALUE">
+        <Description
+          Type="LongDescription"
+          Language="ENGLISH"
+          Value="Term ">
+        </Description>
+        <Description
+          Type="ShortDescription"
+          Language="ENGLISH"
+          Value="Term ">
+        </Description>
+        <Description
+          Type="Description"
+          Language="ENGLISH"
+          Value="Term ">
+        </Description>
+      </BaseAttribute>
+    </Attribute>
+    <Organization>
+      <AWPrimaryDimensionOrganization
+        MVOption="NONE"
+        HierarchyConsistencyRule="STAR_CONSISTENT"
+        AddUniqueKeyPrefix="True"
+        AW="LAB1_WS">
+        <MVCreationOptions
+          RefreshOn="DEMAND"
+          RefreshType="COMPLETE"
+          UsingConstraintsClause="TRUSTED">
+        </MVCreationOptions>
+        <AttributeOrganization
+          CreateIndex="False"
+          Attribute="LONG_DESCRIPTION">
+        </AttributeOrganization>
+        <AttributeOrganization
+          CreateIndex="False"
+          Attribute="SHORT_DESCRIPTION">
+        </AttributeOrganization>
+        <AttributeOrganization
+          CreateIndex="False"
+          Attribute="YEAR_LONG_DESCRIPTION">
+        </AttributeOrganization>
+        <AttributeOrganization
+          CreateIndex="False"
+          Attribute="YEAR_SHORT_DESCRIPTION">
+        </AttributeOrganization>
+        <AttributeOrganization
+          CreateIndex="False"
+          Attribute="TERM_LONG_DESCRIPTION">
+        </AttributeOrganization>
+        <AttributeOrganization
+          CreateIndex="False"
+          Attribute="TERM_SHORT_DESCRIPTION">
+        </AttributeOrganization>
+        <AttributeOrganization
+          CreateIndex="True"
+          Attribute="VALUE">
+        </AttributeOrganization>
+        <AttributeOrganization
+          CreateIndex="False"
+          Attribute="YEAR_VALUE">
+        </AttributeOrganization>
+        <AttributeOrganization
+          CreateIndex="False"
+          Attribute="TERM_VALUE">
+        </AttributeOrganization>
+        <DefaultBuild>
+          <![CDATA[BUILD SPEC SYS_DEFAULT
+(
+  LOAD, 
+  COMPILE
+)]]>
+        </DefaultBuild>
+      </AWPrimaryDimensionOrganization>
+    </Organization>
+    <Description
+      Type="LongDescription"
+      Language="ENGLISH"
+      Value="TIMEDM">
+    </Description>
+    <Description
+      Type="ShortDescription"
+      Language="ENGLISH"
+      Value="TIMEDM">
+    </Description>
+    <Description
+      Type="Description"
+      Language="ENGLISH"
+      Value="TIMEDM">
+    </Description>
+  </StandardDimension>
+  
+  <Cube
+    ETViewName="FACT1_CUBE_DIPLOMS_VIEW"
+    Name="FACT1_CUBE_DIPLOMS"
+    DefaultMeasure="NORMAL_DIPLOM">
+    <Measure>
+      <BaseMeasure
+        SQLDataType="NUMBER"
+        AllowAutoDataTypeChange="True"
+        ETMeasureColumnName="NORMAL_DIPLOM"
+        Name="NORMAL_DIPLOM">
+        <Description
+          Type="LongDescription"
+          Language="ENGLISH"
+          Value="Normal diplom">
+        </Description>
+        <Description
+          Type="ShortDescription"
+          Language="ENGLISH"
+          Value="Normal diplom">
+        </Description>
+        <Description
+          Type="Description"
+          Language="ENGLISH"
+          Value="Normal diplom">
+        </Description>
+      </BaseMeasure>
+    </Measure>
+    <Measure>
+      <BaseMeasure
+        SQLDataType="NUMBER"
+        AllowAutoDataTypeChange="True"
+        ETMeasureColumnName="EXCELLENT_DIPLOM"
+        Name="EXCELLENT_DIPLOM">
+        <Description
+          Type="LongDescription"
+          Language="ENGLISH"
+          Value="Excellent diplom">
+        </Description>
+        <Description
+          Type="ShortDescription"
+          Language="ENGLISH"
+          Value="Excellent diplom">
+        </Description>
+        <Description
+          Type="Description"
+          Language="ENGLISH"
+          Value="Excellent diplom">
+        </Description>
+      </BaseMeasure>
+    </Measure>
+    <CubeMap
+      Name="MAP1"
+      IsSolved="False"
+      Query="FACT_TABLE1">
+      <MeasureMap
+        Name="NORMAL_DIPLOM"
+        Measure="NORMAL_DIPLOM"
+        Expression="FACT_TABLE1.USUAL_DIPLOMA">
+      </MeasureMap>
+      <MeasureMap
+        Name="EXCELLENT_DIPLOM"
+        Measure="EXCELLENT_DIPLOM"
+        Expression="FACT_TABLE1.DIPLOMA_WITH_HONORS">
+      </MeasureMap>
+      <CubeDimensionalityMap
+        Name="TIMEDM"
+        Dimensionality="TIMEDM"
+        Expression="&quot;TIME&quot;.YEAR_ID"
+        MappedDimension="TIMEDM.TIME_PERIOD.YEAR"
+        JoinCondition="FACT_TABLE1.TIME_ID = &quot;TIME&quot;.ID">
+      </CubeDimensionalityMap>
+    </CubeMap>
+    <Organization>
+      <AWCubeOrganization
+        MVOption="NONE"
+        SparseType="COMPRESSED"
+        MeasureStorage="SHARED"
+        NullStorage="MV_READY"
+        CubeStorageType="NUMBER"
+        SQLCubeStorageType="NUMBER"
+        PrecomputePercent="40"
+        PrecomputePercentTop="0"
+        PartitionLevel="TIMEDM.TIME_PERIOD.TERM"
+        AW="LAB1_WS">
+        <MVCreationOptions>
+        </MVCreationOptions>
+        <SecondaryPartitionLevel
+          Name="TIME_PERIOD_YEAR"
+          PrecomputePercent="40"
+          Level="TIMEDM.TIME_PERIOD.YEAR">
+        </SecondaryPartitionLevel>
+        <SparseDimension
+          Name="TIMEDM"/>
+        <DefaultBuild>
+          <![CDATA[BUILD SPEC LOAD_AND_AGGREGATE
+(
+  LOAD NO SYNCH, 
+  SOLVE
+)]]>
+        </DefaultBuild>
+      </AWCubeOrganization>
+    </Organization>
+    <Dimensionality
+      Name="TIMEDM"
+      ETKeyColumnName="TIMEDM"
+      Dimension="TIMEDM">
+    </Dimensionality>
+    <Classification
+      Value="SQLExpressions=true"/>
+    <Description
+      Type="LongDescription"
+      Language="ENGLISH"
+      Value="fact1 cube">
+    </Description>
+    <Description
+      Type="ShortDescription"
+      Language="ENGLISH"
+      Value="fact1 cube">
+    </Description>
+    <Description
+      Type="Description"
+      Language="ENGLISH"
+      Value="fact1 cube">
+    </Description>
+    <ConsistentSolve>
+      <![CDATA[SOLVE 
+(
+  SUM
+    MAINTAIN COUNT
+     OVER TIMEDM FROM MEMBERS WHERE TIMEDM.LEVEL_NAME = 'YEAR'
+)]]>
+    </ConsistentSolve>
+  </Cube>
+  
+  <AW
+    Name="LAB1_WS"
+    Version="18.1">
+  </AW>
+</Metadata>
+<!--Generated by the Oracle Analytic Workspace Manager-->

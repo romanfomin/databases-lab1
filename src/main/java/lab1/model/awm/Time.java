@@ -16,12 +16,17 @@ public class Time {
     @JoinColumn(name = "year_id", nullable = false)
     private Year year;
 
+    private Integer termValue;
+    private Integer yearValue;
+
     public Time() {
     }
 
     public Time(Term term, Year year) {
         this.term = term;
         this.year = year;
+        this.termValue = term.getValue();
+        this.yearValue = year.getValue();
     }
 
     public Long getId() {
@@ -46,5 +51,21 @@ public class Time {
 
     public void setYear(Year year) {
         this.year = year;
+    }
+
+    public Integer getTermValue() {
+        return termValue;
+    }
+
+    public void setTermValue(Integer termValue) {
+        this.termValue = termValue;
+    }
+
+    public Integer getYearValue() {
+        return yearValue;
+    }
+
+    public void setYearValue(Integer yearValue) {
+        this.yearValue = yearValue;
     }
 }

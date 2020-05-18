@@ -9,13 +9,17 @@ public class Time {
     @SequenceGenerator(name = "time_seq", sequenceName = "time_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "time_seq")
     private Long id;
-    private Integer term;
-    private Integer year;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "term_id", nullable = false)
+    private Term term;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "year_id", nullable = false)
+    private Year year;
 
     public Time() {
     }
 
-    public Time(Integer term, Integer year) {
+    public Time(Term term, Year year) {
         this.term = term;
         this.year = year;
     }
@@ -28,19 +32,19 @@ public class Time {
         this.id = id;
     }
 
-    public Integer getTerm() {
+    public Term getTerm() {
         return term;
     }
 
-    public void setTerm(Integer term) {
+    public void setTerm(Term term) {
         this.term = term;
     }
 
-    public Integer getYear() {
+    public Year getYear() {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public void setYear(Year year) {
         this.year = year;
     }
 }

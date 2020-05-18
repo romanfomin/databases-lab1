@@ -19,15 +19,15 @@ public class Publication {
             inverseJoinColumns = @JoinColumn(name = "author_id")
     )
     private List<Participant> authors;
-    private Date date;
+    private Date publicationDate;
 
     public Publication() {
     }
 
-    public Publication(String name, List<Participant> authors, Date date) {
+    public Publication(String name, List<Participant> authors, Date publicationDate) {
         this.name = name;
         this.authors = authors;
-        this.date = date;
+        this.publicationDate = publicationDate;
     }
 
     public Long getId() {
@@ -50,11 +50,11 @@ public class Publication {
         this.authors = authors;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getPublicationDate() {
+        return publicationDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setPublicationDate(Date publicationDate) {
+        this.publicationDate = publicationDate;
     }
 }

@@ -1,7 +1,5 @@
 package lab1.model.mongo;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 
 @Entity

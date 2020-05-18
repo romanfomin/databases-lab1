@@ -13,7 +13,7 @@ public class Conference {
     private Long id;
     private String name;
     private String address;
-    private Date date;
+    private Date conferenceDate;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "conference_to_participant",
@@ -25,10 +25,10 @@ public class Conference {
     public Conference() {
     }
 
-    public Conference(String name, String address, Date date, List<Participant> participants) {
+    public Conference(String name, String address, Date conferenceDate, List<Participant> participants) {
         this.name = name;
         this.address = address;
-        this.date = date;
+        this.conferenceDate = conferenceDate;
         this.participants = participants;
     }
 
@@ -52,12 +52,12 @@ public class Conference {
         this.address = address;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getConferenceDate() {
+        return conferenceDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setConferenceDate(Date conferenceDate) {
+        this.conferenceDate = conferenceDate;
     }
 
     public List<Participant> getParticipants() {

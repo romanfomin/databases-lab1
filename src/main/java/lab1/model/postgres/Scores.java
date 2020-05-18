@@ -17,16 +17,16 @@ public class Scores {
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
     private Integer score;
-    private Date date;
+    private Date setDate;
 
     public Scores() {
     }
 
-    public Scores(Subject subject, Student student, Integer score, Date date) {
+    public Scores(Subject subject, Student student, Integer score, Date setDate) {
         this.subject = subject;
         this.student = student;
         this.score = score;
-        this.date = date;
+        this.setDate = setDate;
     }
 
     public Long getId() {
@@ -57,11 +57,11 @@ public class Scores {
         this.score = score;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getSetDate() {
+        return setDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setSetDate(Date setDate) {
+        this.setDate = setDate;
     }
 }

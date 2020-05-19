@@ -13,5 +13,5 @@ public interface ConferenceCrudRepository extends CrudRepository<Conference, Lon
             "    AND EXTRACT(MONTH FROM c.CONFERENCE_DATE)>=6*(?2-1)" +
             "    AND EXTRACT(MONTH FROM c.CONFERENCE_DATE)<=6*?2;",
             nativeQuery = true)
-    public Double getPublicationsCount(Long year, Long term);
+    public Integer getConferencesCount(Long year, Long term);
 }

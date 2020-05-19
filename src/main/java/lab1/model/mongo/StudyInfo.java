@@ -11,6 +11,7 @@ public class StudyInfo {
     private Long id;
     private String type;
     private Integer paid;
+    private Integer debt;
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
@@ -18,9 +19,10 @@ public class StudyInfo {
     public StudyInfo() {
     }
 
-    public StudyInfo(String type, Integer paid, Person person) {
+    public StudyInfo(String type, Integer paid, Integer debt, Person person) {
         this.type = type;
         this.paid = paid;
+        this.debt = debt;
         this.person = person;
     }
 
@@ -54,5 +56,13 @@ public class StudyInfo {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public Integer getDebt() {
+        return debt;
+    }
+
+    public void setDebt(Integer debt) {
+        this.debt = debt;
     }
 }

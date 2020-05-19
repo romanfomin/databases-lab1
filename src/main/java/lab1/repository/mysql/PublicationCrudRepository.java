@@ -13,5 +13,5 @@ public interface PublicationCrudRepository extends CrudRepository<Publication, L
             "    AND EXTRACT(MONTH FROM p.PUBLICATION_DATE)>=6*(?2-1)" +
             "    AND EXTRACT(MONTH FROM p.PUBLICATION_DATE)<=6*?2;",
             nativeQuery = true)
-    public Double getPublicationsCount(Long year, Long term);
+    public Integer getPublicationsCount(Long year, Long term);
 }

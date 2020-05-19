@@ -8,6 +8,7 @@ import lab1.repository.awm.*;
 import lab1.repository.mongo.*;
 import lab1.repository.mysql.*;
 import lab1.repository.postgres.*;
+import lab1.service.FactTable4Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -115,7 +116,7 @@ public class DBManager {
 
     public void doDbOperations() {
         saveData();
-        getData();
+//        fillFactTable1();
     }
 
     @Transactional
@@ -209,8 +210,8 @@ public class DBManager {
         Person person1 = new Person("name1", "lastname1", false);
         Person person2 = new Person("name2", "lastname2", true);
 
-        StudyInfo info1 = new StudyInfo("type1", 0, person1);
-        StudyInfo info2 = new StudyInfo("type2", 10000, person2);
+        StudyInfo info1 = new StudyInfo("type1", 0, 3, person1);
+        StudyInfo info2 = new StudyInfo("type2", 10000, 0, person2);
 
         UniversityCampus universityCampus = new UniversityCampus("addres1", 200);
 
@@ -316,15 +317,5 @@ public class DBManager {
         factTable4CrudRepository.save(factTable4_1);
         factTable4CrudRepository.save(factTable4_2);
 // //////////////////////////////////////////////////////////////////
-    }
-
-    @Transactional
-    public void getData() {
-        Iterable<UniversityCampus> universityCampuses = universityCampusCrudRepository.findAll();
-        for (UniversityCampus universityCampus: universityCampuses) {
-            Double avgPeopleInOneRoom = personToRoomCrudRepository.getAvgPeopleInOneRoom(universityCampus.getId());
-            System.out.println(avgPeopleInOneRoom);
-        }
-
     }
 }

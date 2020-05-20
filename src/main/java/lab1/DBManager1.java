@@ -25,21 +25,21 @@ public class DBManager1 {
     @Autowired
     private FactTable1Service factTable1Service;
 
-    @Transactional
-    public void fillFactTable1() {
-        for (long year = 2015; year <= 2020; year++) {
-            for (long term = 0; term <= 1; term++) {
-                Time time = new Time(term, year);
-                timeCrudRepository.save(time);
-
-                Integer conferencesCount = conferenceCrudRepository.getConferencesCount(year, term);
-                Integer publicationsCount = publicationCrudRepository.getPublicationsCount(year, term);
-
-                FactTable1 entry = new FactTable1();
-                entry.setConferences(conferencesCount);
-                entry.setPublications(publicationsCount);
-                factTable1Service.save(entry);
-            }
-        }
-    }
+//    @Transactional
+//    public void fillFactTable1() {
+//        for (long year = 2015; year <= 2020; year++) {
+//            for (long term = 0; term <= 1; term++) {
+//                Time time = new Time(term, year);
+//                timeCrudRepository.save(time);
+//
+//                Integer conferencesCount = conferenceCrudRepository.getConferencesCount(year, term);
+//                Integer publicationsCount = publicationCrudRepository.getPublicationsCount(year, term);
+//
+//                FactTable1 entry = new FactTable1();
+//                entry.setConferences(conferencesCount);
+//                entry.setPublications(publicationsCount);
+//                factTable1Service.save(entry);
+//            }
+//        }
+//    }
 }

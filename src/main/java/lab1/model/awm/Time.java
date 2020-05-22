@@ -53,6 +53,7 @@ public class Time {
         this.year = year;
     }
 
+<<<<<<< Updated upstream
     public Integer getTermValue() {
         return termValue;
     }
@@ -61,6 +62,8 @@ public class Time {
         this.termValue = termValue;
     }
 
+=======
+>>>>>>> Stashed changes
     public Integer getYearValue() {
         return yearValue;
     }
@@ -68,4 +71,15 @@ public class Time {
     public void setYearValue(Integer yearValue) {
         this.yearValue = yearValue;
     }
+<<<<<<< Updated upstream
+=======
+
+    public Integer getTermValue() {
+        return termValue;
+    }
+
+    public void setTermValue(Integer termValue) {
+        this.termValue = termValue;
+    }
+>>>>>>> Stashed changes
 }
